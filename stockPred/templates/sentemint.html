@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sentemint</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <h2>Sentiment</h2> 
+    <br><br>
+        {% if final %}
+        <div><div class="container">
+            <div class="card border-primary mb-3" style="max-width: 50rem;">
+                <div class="card-header">The Summary is</div>
+                <div class="card-body text-primary">
+                  <p class="card-text">{{summary_result }}</p>
+                </div>
+            </div>
+            </div>
+
+            <div class="container">
+                 
+             <br>
+            <div class="card border-primary mb-3" style="max-width: 50rem;">
+                <div class="card-header">The Sentemint is</div>
+                <div class="card-body text-primary">
+                  <p class="card-text">{{ final }}% positive !</p>
+                </div>
+            </div>
+            
+            {% else %}
+            <p>NOT WORK !</p>
+            {% endif %}
+        </div>
+        <span>By Meshalalsultan </span>
+        </div>
+
+    {% endblock %}
+</body>
+</html>
