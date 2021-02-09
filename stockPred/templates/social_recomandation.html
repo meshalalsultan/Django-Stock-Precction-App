@@ -18,17 +18,14 @@
     <br><br><div>
         <br>
         <center>
-            <form action="{% url 'result' %}"  >
+            <form action="{% url 'social_reco' %}"  >
                 {% csrf_token %}
                 Stock Name
-                <input required type="text" name='stockName' placeholder="Enter Stock Name"><br><br>
-                Country
-                <input required type="text" name='country' placeholder="Enter Country Name">
-                <br><br>
+                <input required type="text" name='symbol' placeholder="Enter Stock Name"><br><br>
                 Start Date
-                <input required type="date" name="startDate" placeholder="From Date"><br><br>
+                <input type="date" name="startDate" placeholder="From Date"><br><br>
                 End Date
-                <input required type="date" name="endDate" placeholder="To Date"><br><br>
+                <input  type="date" name="endDate" placeholder="To Date"><br><br>
                 <br><br>
                 <input type="submit" value="Submit">
             </form>

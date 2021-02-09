@@ -11,17 +11,12 @@
     <h1>
         Sentemint
     </h1>
-    <br><br>
 
     <br><br>
         <div class='container-fluid'>
         <form action="{% url 'sentemint'%}">
         {% csrf_token %}
-        <label for="basic-url" class="form-label">Get Sentemint by url</label>
-        <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon3">URL</span>
-        <input name ='url1' type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-        </div>
+
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Past The Text</label>
             <textarea name="text1" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>

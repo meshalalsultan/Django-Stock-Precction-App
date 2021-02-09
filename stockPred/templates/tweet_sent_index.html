@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <h1>
+        Tweet Sentemint For {{t_stock}}
+    </h1>
+    <form class="row g-3" action="{% url 'tweet_sentemint' %}">
+        {% csrf_token %}
+        <div class="col-auto">
+          <label for="staticEmail2" class="visually-hidden"></label>
+          <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Stock Sympol">
+        </div>
+        <div class="col-auto">
+          <label for="inputPassword2" name='t_stock' class="visually-hidden">$</label>
+          <input type="text" name='t_stock' class="form-control" id="inputPassword2" placeholder="AAPL">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Get Tweet Sentemint</button>
+        </div>
+      </form>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <br/>
+    <br>
+    {% endblock %}
+</body>
+</html>

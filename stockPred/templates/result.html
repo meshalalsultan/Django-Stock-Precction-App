@@ -9,24 +9,61 @@
     {% extends 'base.html' %}
     {% block content %}
     <h1>
-        The Result Page
+        All About {{stock}}
     </h1>
-    <a href="{% url 'home' %}">Back To Home Page</a>
-    <br><br>
+    <br>
+
     <div class="container">
-        {{ stock }}
+
+        <div class="card w-100">
+            <div class="card-body">
+              <h5 class="card-title">{{ stock }} Profile</h5>
+              <p class="card-text">{{ co_profile }}</p>
+            </div>
+          </div>
+        
         <br><br>
-        {{ country }}
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">{{ stock }}</h4>
+            <p>The Predicted Price</p>
+            <hr>
+            {{ pred }}
+          </div>
         <br><br>
-        {{ startDate }}
-        <br><br>
-        {{ endDate }}
-        <br><br>
-        {{ co_profile }}
-        <br><br>
-        <h1>The Predicted Price for {{ stock }} is <b>{{ pred }}</b></h1>
-    </div>
-    
+          <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Positive Tweets</div>
+            <div class="card-body">
+              
+              <p class="card-text">{{ Positive_tweets }}</p>
+            </div>
+          </div>
+        
+        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+            <div class="card-header">Negative Tweet</div>
+            <div class="card-body">
+              <p class="card-text">{{neg_tweet }}</p>
+            </div>
+        </div>
+        <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">Natural Tweet</div>
+            <div class="card-body">
+              <p class="card-text">{{ nat_tweet }}</p>
+            </div>
+        </div>
+        {{tweet_t1}}
+        <span class="badge bg-success">{{tweet_s1}}</span><br>
+        {{tweet_t2}}
+        <span class="badge bg-success">{{tweet_s2}}</span><br>
+        {{tweet_t3}}
+        <span class="badge bg-success">{{tweet_s3}}</span><br>
+        {{tweet_t4}}
+        <span class="badge bg-success">{{tweet_s4}}</span><br>
+        {{tweet_t5}}
+        <span class="badge bg-success">{{tweet_s5}}</span><br>
+
+
+  
+
     
     
     

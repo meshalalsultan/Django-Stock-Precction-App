@@ -16,14 +16,15 @@ from tensorflow.keras.models import load_model
 
 model = load_model('stockPred/model.h5')
 
-def predict(stock,country,start_date,end_date):
-    df = investpy.get_stock_historical_data(stock=stock, country=country, from_date=start_date, to_date=end_date)
+def predict(stock,start_Date,end_Date):
+    df= investpy.get_crypto_historical_data(crypto='bitcoin', from_date=start_Date, to_date=end_Date)
+
     df.drop('Currency',axis=1,inplace=True)
     data = df.filter(['Close'])
     dataset = data.values
     scaler = MinMaxScaler(feature_range =(0,1))
     scaled_data = scaler.fit_transform(dataset)
-    df = investpy.get_stock_historical_data(stock=stock, country=country, from_date=start_date, to_date=end_date)
+    df= investpy.get_crypto_historical_data(crypto='bitcoin', from_date=start_Date, to_date=end_Date)
     df.drop('Currency' ,axis=1,inplace=True)
     pred_data = df.filter(['Close'])
     last_60_days = pred_data[-60:].values
@@ -36,6 +37,5 @@ def predict(stock,country,start_date,end_date):
     pred_price = scaler.inverse_transform(pred_price)
     pred = []
     pred.append(pred_price)
-
 
     return pred[0]

@@ -9,26 +9,23 @@
     {% extends 'base.html' %}
     {% block content %}
     <h1>
-        Predect Stock Price 
+        Predect Crypto Price 
     </h1>
     <p>
-        From 60 Day's We will predect tommorow stock price of your choise
+        From 60 Day's We will predect tommorow Crypto price of your choise
         please fill the form and find your predection !!
     </p>
     <br><br><div>
         <br>
         <center>
-            <form action="{% url 'result' %}"  >
+            <form action="{% url 'bitcoin_pred' %}" >
                 {% csrf_token %}
-                Stock Name
-                <input required type="text" name='stockName' placeholder="Enter Stock Name"><br><br>
-                Country
-                <input required type="text" name='country' placeholder="Enter Country Name">
-                <br><br>
+                Crypto Name
+                <input required type="text" name='cryptoName' placeholder="Enter Crypto Name"><br><br>
                 Start Date
-                <input required type="date" name="startDate" placeholder="From Date"><br><br>
+                <input required type="date" name="start_Date" placeholder="From Date"><br><br>
                 End Date
-                <input required type="date" name="endDate" placeholder="To Date"><br><br>
+                <input required type="date" name="end_Date" placeholder="To Date"><br><br>
                 <br><br>
                 <input type="submit" value="Submit">
             </form>
