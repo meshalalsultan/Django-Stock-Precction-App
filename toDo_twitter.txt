@@ -1,0 +1,5 @@
+1- change the design and allightmint
+2- show the tweet count 
+3- make the pred on tabel with tabel of [tweet , sentemint]
+4- show tweet sentemint pos count and color 
+5- show tweet sentemint neg count and color

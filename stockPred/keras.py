@@ -39,3 +39,26 @@ def predict(stock,country,start_date,end_date):
 
 
     return pred[0]
+
+def get_signal(stock , country ):
+    signal = investpy.technical_indicators(name=stock, country=country, product_type="stock", interval='daily')
+
+
+    return signal
+
+def get_news(country):
+    countr = [country]
+    important = ['high','medium' , 'low']
+    news = investpy.news.economic_calendar(importances=important , countries=countr)
+    return news
+
+def last_close(stock,country,start_date,end_date):
+    df = investpy.get_stock_historical_data(stock=stock, country=country, from_date=start_date, to_date=end_date)
+    last_close = df['Close'].tail(1)[0]
+    last_open = df['Open'].tail(1)[0]
+    return last_close , last_open
+
+
+
+
+

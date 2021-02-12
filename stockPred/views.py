@@ -73,12 +73,25 @@ def result(request ):
 
     pred = keras.predict(stock,country,start_date,end_date)
 
+    signal = keras.get_signal(stock , country)
+    json_records = signal.reset_index().to_json(orient ='records') 
+    signal = [] 
+    signal = json.loads(json_records)
+
+    news = keras.get_news(country)
+    last_event = news['event'][0]
+    last_news = news['importance'][0]
+    time = news['time'][0]
+
+    last_close , last_open = keras.last_close(stock,country,start_date,end_date)
+
 
 
     return render(request, 'result.html',{'stock' : stock ,
     'country' : country , 'startDate' : start_date ,
     'endDate' : end_date , 'co_profile': co_profile ,
-    'pred':pred 
+    'pred':pred, 'signal' : signal , 'last_event':last_event,'last_news':last_news,'time':time,
+    'last_close' : last_close , 'last_open' :last_open 
         
         })
 

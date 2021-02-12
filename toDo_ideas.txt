@@ -1,0 +1,21 @@
+1- invest py have more to do like Signal
+2- More trading ideas and indecator in opensource folder
+3- I think i can use 3 more libarury [ finmarketpy , findatapy , chartpy ] 
+and in open source file [ algotrader , more ]
+4- I want build dash dashbord for sentemint 
+5- change the pred code to another one ( i must find )
+6- put tweet 
+7- put telegram signal 
+
+# اللي احتاجه من التطبيق
+
+ ١- احط السهم يطلع لي {ملخصات} 
+
+- السعر المتوقع للسهم وكم نسبه التوقع 
+- اخر تصويات عن السهم
+- تحليل لاخر الاخبار عن السهم 
+- تحليل لاخر التغريدات عن السهم
+- التوصيات الحاليه عن السهم 
+- صفحه مشابهه للبيتكوين بالعملات اللي موجوده حاليا في عندي 
+
+الاهم : بعذ الضغط على اي من هذه المواصفات يطلع لي تفصيل عنهم 
