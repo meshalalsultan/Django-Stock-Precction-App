@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="/static/assets/plugins/animation/css/animate.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="/static/assets/css/style.css">
+        <!-- StyleSheets  -->
+        <link rel="stylesheet" href="/static/assets/css/dashlite.css?ver=2.1.0">
+        <link id="skin-default" rel="stylesheet" href="/static/assets/css/theme.css?ver=2.1.0">
     <!-- Specific CSS goes HERE -->
     {% block stylesheets %}{% endblock stylesheets %}
     <title>Stock Predection</title>
@@ -51,6 +54,13 @@
         </div>
       </nav>
     <div>
+      {% block javascripts %}
+      <script src="/static/assets/js/bundle.js?ver=2.1.0"></script>
+      <script src="/static/assets/js/scripts.js?ver=2.1.0"></script>
+      <script src="/static/assets/js/charts/gd-analytics.js?ver=2.1.0"></script>
+      <script src="/static/assets/js/libs/jqvmap.js?ver=2.1.0"></script>
+      {% endblock javascripts %}
+
         <br><br>
         {% block content %}
 

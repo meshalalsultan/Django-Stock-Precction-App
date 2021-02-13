@@ -79,9 +79,9 @@ def result(request ):
     signal = json.loads(json_records)
 
     news = keras.get_news(country)
-    last_event = news['event'][0]
-    last_news = news['importance'][0]
-    time = news['time'][0]
+    last_event = news['event']
+    last_news = news['importance']
+    time = news['time']
 
     last_close , last_open = keras.last_close(stock,country,start_date,end_date)
 
