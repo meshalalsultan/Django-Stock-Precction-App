@@ -84,41 +84,41 @@
                   </div>
     <br>
 
-    <!-- [ basic-table ] start -->
-    <div class="col-xl-10">
-      <div class="card">
-        <div class="card-header">
-          <b>
-            <h5>{{stock}} Tachnical Indecator Analysis </h5>
-          </b>
+                    <!-- [ basic-table ] start -->
+                    <div class="col-xl-10">
+                    <div class="card">
+                        <div class="card-header">
+                        <b>
+                            <h5>{{stock}} Tachnical Indecator Analysis </h5>
+                        </b>
 
-        </div>
-        <div class="card-block table-border-style">
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
+                        </div>
+                        <div class="card-block table-border-style">
+                        <div class="table-responsive">
+                            <table class="table">
+                            <thead>
+                                <tr>
 
-                  <th scope="col">Technical Indicator</th>
-                  <th scope="col">Value</th>
-                  <th scope="col">Signal</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for i in signal %}
-                <tr>
-                  <td>{{i.technical_indicator}}</td>
-                  <td>{{i.value}}</td>
-                  <td>{{i.signal}}</td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
+                                <th scope="col">Technical Indicator</th>
+                                <th scope="col">Value</th>
+                                <th scope="col">Signal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in signal %}
+                                <tr>
+                                <td>{{i.technical_indicator}}</td>
+                                <td>{{i.value}}</td>
+                                <td>{{i.signal}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <br>
 </div>
 <div class="container">
   <div class="nk-block">

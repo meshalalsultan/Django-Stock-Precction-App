@@ -36,20 +36,11 @@
 
   </tbody>
 </table>
-
-
-
-
-
-<br/><br/>
-{{ t }}
-
-
-
-
+<br><br>
+<div class="container">
 <div class="container">
 	<div class="row">
-		{% for x in req.Data %}
+    {% for x in res.Data %}
 			<div class="col-sm">
 				<div class="card" style="width: 18rem;">
 				  <img class="card-img-top" src="{{ x.imageurl }}" alt="{{ x.source }}">
@@ -64,11 +55,11 @@
 		{% endfor %}
 	</div>
 </div>
+</div>
+
 
 
 	
-
-	{{ api.Data }}
 
 {% endblock %}
 

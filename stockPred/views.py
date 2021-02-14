@@ -8,6 +8,8 @@ from . import keras
 from . import Sammary
 from . import bit_pred
 from . import social_reco
+import re 
+import pandas as pd 
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -16,6 +18,7 @@ import nltk
 from nltk.corpus import stopwords
 from . import tweetSentemint
 import datetime as dt
+from textblob import TextBlob
 
 
 nltk.download('stopwords')
@@ -33,9 +36,28 @@ def home(request):
     price = json.loads(price_request.content)
 
     api_request = requests.get("https://min-api.cryptocompare.com/data/v2/news/?lang=EN")
-    req = json.loads(api_request.content)
-    t = req['Data'][0]['body']
-    return render(request, 'home.html', {'req': req, 'price': price , 't':t})
+    res = json.loads(api_request.content)
+    
+    
+    def getAnalysis(score):
+            if score < 0:
+                return 'Negative'
+            elif score == 0:
+                return 'Neutral'
+            else:
+                return 'Positive'
+        
+    for d in res['Data']:
+        txt =  (d['body'])
+        txt =  ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) |(\w+:\/\/\S+)", " ", txt).split())
+        #twitter = pd.DataFrame([tweet.full_text for tweet in post], columns=['Tweets'])
+        df = pd.DataFrame([d['body'] for d in res['Data']], columns=['Text'])
+        df['Subjectivity'] = TextBlob(txt).sentiment.subjectivity
+        df['Polarity'] = TextBlob(txt).sentiment.polarity
+        df['Analysis'] = df['Polarity'].apply(getAnalysis)
+        sent = df['Analysis']
+        text = df['Text']
+    return render(request, 'home.html', {'res': res, 'price': price , 'sent' : sent ,'text' : text})
 
 
 def prices(request):
@@ -79,10 +101,10 @@ def result(request ):
     signal = [] 
     signal = json.loads(json_records)
 
-    news = keras.get_news(country)
-    last_event = news['event']
-    last_news = news['importance']
-    time = news['time']
+    news = keras.get_news()
+    last_event = news['event'][0]
+    last_news = news['importance'][0]
+    time = news['time'][0]
 
     last_close , last_open = keras.last_close(stock,country,start_date,end_date)
 

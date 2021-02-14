@@ -46,10 +46,10 @@ def get_signal(stock , country ):
 
     return signal
 
-def get_news(country):
-    countr = [country]
+def get_news():
+    
     important = ['high','medium' , 'low']
-    news = investpy.news.economic_calendar(importances=important , countries=countr)
+    news = investpy.news.economic_calendar(importances=important )
     return news
 
 def last_close(stock,country,start_date,end_date):
@@ -58,7 +58,29 @@ def last_close(stock,country,start_date,end_date):
     last_open = df['Open'].tail(1)[0]
     return last_close , last_open
 
+def get_stock_info(stock,country):
+    stock = investpy.stocks.get_stock_information(stock = stock ,country=country , as_json = True)
 
+'''
+stock_information = {
+    "Stock Symbol": "AAPL",
+    "Prev. Close": 267.25,
+    "Todays Range": "263.45 - 268.25",
+    "Revenue": 260170000000.00003,
+    "Open": 267.27,
+    "52 wk Range": "142 - 268.25",
+    "EPS": 11.85,
+    "Volume": 23693550.0,
+    "Market Cap": 1173730000000.0,
+    "Dividend (Yield)": "3.08 (1.15%)",
+    "Average Vol. (3m)": 25609925.0,
+    "P/E Ratio": 22.29,
+    "Beta": 1.23,
+    "1-Year Change": "47.92%",
+    "Shares Outstanding": 4443236000.0,
+    "Next Earnings Date": "04/02/2020"
+}
+'''
 
 
 
