@@ -14,7 +14,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 from tensorflow.keras.models import load_model
 
-model = load_model('stockPred/model.h5')
+model = load_model('./model.h5' , compile=False)
 
 def predict(stock,country,start_date,end_date):
     df = investpy.get_stock_historical_data(stock=stock, country=country, from_date=start_date, to_date=end_date)

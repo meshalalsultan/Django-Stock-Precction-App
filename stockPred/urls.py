@@ -14,4 +14,5 @@ urlpatterns = [
     path('social_recomandation' , views.social_recomandation , name = 'social_recomandation'),
     path('social_reco' ,views.social_reco , name='social_reco'),
     path('prices/', views.prices, name="prices"),
+    path('twet_sent/' , views.twet_sent , name='twet_sent'),
 ]

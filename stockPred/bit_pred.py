@@ -14,7 +14,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 from tensorflow.keras.models import load_model
 
-model = load_model('stockPred/model.h5')
+model = load_model('./model.h5' , compile=False)
 
 def predict(stock,start_Date,end_Date):
     df= investpy.get_crypto_historical_data(crypto='bitcoin', from_date=start_Date, to_date=end_Date)

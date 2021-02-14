@@ -28,13 +28,60 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth) 
 
   
-def clean_tweet(tweet): 
+def cleanTxt(tweet): 
         ''' 
     Utility function to clean tweet text by removing links, special characters 
     using simple regex statements. 
         '''
-        tweets=  ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) |(\w+:\/\/\S+)", " ", tweet).split()) 
+        tweets = re.sub('@[A-Za-z0–9]+', '', tweet) #Removing @mentions
+        tweets = re.sub('#', '', tweet) # Removing '#' hash tag
+        tweets = re.sub('RT[\s]+', '', tweet) # Removing RT
+        tweets = re.sub('https?:\/\/\S+', '', tweet) # Removing hyperlink
+        #tweets=  ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) |(\w+:\/\/\S+)", " ", tweet).split()) 
         return tweets
+
+
+def getSubjectivity(tweet):
+        return TextBlob(tweet).sentiment.subjectivity
+
+def getPolarity(tweet):
+        return TextBlob(tweet).sentiment.polarity
+
+def getAnalysis(score):
+            if score < 0:
+                return 'Negative'
+            elif score == 0:
+                return 'Neutral'
+            else:
+                return 'Positive'
+
+def get_tweet(query):
+    
+    msgs = []
+    msg =[]
+    for tweets in api.search(query, count = 500 ):
+        msg = [tweets.text] 
+        msg = tuple(msg)                    
+        msgs.append(msg)
+
+    df = pd.DataFrame(msgs)
+    df['Tweets'] = df[0].apply(cleanTxt)
+    df.drop(0, axis=1, inplace=True)
+    df['Subjectivity'] = df['Tweets'].apply(getSubjectivity)
+    df['Polarity'] = df['Tweets'].apply(getPolarity)
+    df['Analysis'] = df['Polarity'].apply(getAnalysis)
+    positive = df.loc[df['Analysis'].str.contains('Positive')]
+    negative = df.loc[df['Analysis'].str.contains('Negative')]
+    neutral = df.loc[df['Analysis'].str.contains('Neutral')]
+    df.to_csv('tweet_df.csv')
+
+    positive_per = round((positive.shape[0]/df.shape[0])*100, 1)
+    negative_per = round((negative.shape[0]/df.shape[0])*100, 1)
+    neutral_per = round((neutral.shape[0]/df.shape[0])*100, 1)
+
+    return positive_per , negative_per , neutral_per 
+
+'''               
 def get_tweet_sentiment(tweet): 
     
         # create TextBlob object of passed tweet text 
@@ -46,8 +93,9 @@ def get_tweet_sentiment(tweet):
             return 'neutral'
         else: 
             return 'negative'
-  
-def get_tweets(query, count = 10): 
+ 
+
+def get_tweets(query, count = 100): 
 
         # empty list to store parsed tweets 
         tweets = [] 
@@ -78,7 +126,7 @@ def get_tweets(query, count = 10):
         return tweets 
   
   
-'''
+
     # picking negative tweets from tweets 
     # percentage of negative tweets 
     # percentage of neutral tweets 

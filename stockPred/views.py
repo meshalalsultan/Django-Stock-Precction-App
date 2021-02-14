@@ -8,6 +8,7 @@ from . import keras
 from . import Sammary
 from . import bit_pred
 from . import social_reco
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -114,7 +115,7 @@ def tweet_sent_index(request):
 
 
 def tweet_sentemint(request):
-    stock= request.GET["t_stock"].upper()
+    #stock= request.GET["t_stock"].upper()
     query = '$'+stock
     tweets = tweetSentemint.get_tweets(query = query, count = 200)
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
@@ -147,6 +148,15 @@ def tweet_sentemint(request):
     'neg_tweet' : neg_tweet , 'nat_tweet' : nat_tweet ,
     'tweet_t1':tweet_t1,'tweet_t2':tweet_t2,'tweet_t3':tweet_t3,'tweet_t4':tweet_t4,'tweet_t5':tweet_t5,
     'tweet_s1':tweet_s1,'tweet_s2':tweet_s2 , 'tweet_s3':tweet_s3,'tweet_s4':tweet_s4,'tweet_s5':tweet_s5})
+
+
+def twet_sent(request):
+    stock= request.GET["t_stock"].upper()
+    tiker = '$'+stock
+
+    positive , negative , neutral = tweetSentemint.get_tweet(tiker)
+
+    return render(request,'test_sentemint.html', {'positive' : positive,'negative' : negative,'neutral': neutral})
 
 def bitcoin_index(request):
     return render(request , 'bitcoin_index.html')
