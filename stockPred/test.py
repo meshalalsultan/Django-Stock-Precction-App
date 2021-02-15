@@ -78,7 +78,7 @@ def getAnalysis(score):
                 return 'Neutral'
             else:
                 return 'Positive'
-'''	
+
     # Grab Crypto Price Data
 price_request = requests.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP,BCH,EOS,LTC,XLM,ADA,USDT,MIOTA,TRX&tsyms=USD")
 price = json.loads(price_request.content)
@@ -87,7 +87,7 @@ api_request = requests.get("https://min-api.cryptocompare.com/data/v2/news/?lang
 res = json.loads(api_request.content)
 
 print (type(res['Data']))
-'''
+
 for d in res['Data']:
     txt =  (d['body'])
     txt =  ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) |(\w+:\/\/\S+)", " ", txt).split())
@@ -96,7 +96,7 @@ for d in res['Data']:
     df['Subjectivity'] = TextBlob(txt).sentiment.subjectivity
     df['Polarity'] = TextBlob(txt).sentiment.polarity
     df['Analysis'] = df['Polarity'].apply(getAnalysis)
-'''
+
 for d in res['Data']:
     txt =  (d['body'])
     txt =  ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) |(\w+:\/\/\S+)", " ", txt).split())
@@ -113,5 +113,46 @@ for d in res['Data']:
 
     print (df)
     #print (positive_per)
+'''
 
-    
+from fredapi import Fred
+
+fred = Fred(api_key='db6f8fecf821dd7d93c03618e0ccd6f9')
+
+data = fred.get_series_first_release('GDP')
+
+print('Data is : ')
+print (data)
+print ('Type is : ')
+print(type(data))
+print ('------------------------')
+
+#Get latest data
+
+last_gdb_data = fred.get_series_latest_release('GDP')#
+print('last_gdb_data is : ')
+print(last_gdb_data)
+print ('Type is : ')
+print(type(last_gdb_data))
+print ('------------------------')
+
+#search for data series
+
+fred = fred.search('potential gdp')
+#fred.to_csv('stockPred/fred.csv')
+print('fred is : \n')
+print(fred)
+print ('Type is : \n')
+print(type(fred))
+print ('columns is :\n ')
+print(fred.columns)
+print('Title is : \n')
+print(fred['title'][0])
+print ('Note is : \n')
+print(fred['notes'][0]+'\n')
+print ('last_updated is : \n')
+print(fred['last_updated'][0])
+print ('popularity is : \n')
+print(fred['popularity'][0]+'\n')
+print ('------------------------')
+
